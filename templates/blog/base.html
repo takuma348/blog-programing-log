@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
+
   <head>
 
     <meta charset="utf-8">
@@ -11,18 +12,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {% block icon %}<link rel="shortcut icon" href="{% static 'blog/img/favicon.ico' %}">{% endblock %}
+    {% block icon %}<link rel="shortcut icon" href="{% static "blog/img/favicon.ico" %}">{% endblock %}
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'blog/css/base.css'  %}">
-
+    <link rel="stylesheet" href="{% static "blog/css/base.css" %}"/>
     {% block extracss %}{% endblock %}
 
   </head>
+
   <body>
+
     {% block layout %}{% endblock %}
 
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -43,13 +45,5 @@
   <!-- Custom JS -->
   {% block extrajs %}{% endblock %}
 
-  {% block analytics %}
-    <!-- アナリティクス -->
-      {% for anal in analytics %}
-        {{ anal.html | safe }}
-      {% endfor %}
-    <!-- アナリティクス終わり -->
-  {% endblock %}
-  
   </body>
 </html>

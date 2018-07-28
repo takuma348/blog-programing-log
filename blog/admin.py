@@ -4,7 +4,7 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 from django.contrib import admin
 from .models import (
     Post, Category, Tag, Comment, ReComment,
-    Link, Analytics, Ads, SiteDetail, PopularPost, Image, File
+    Link, SiteDetail, PopularPost, Image, File
 )
 
 
@@ -21,17 +21,17 @@ class SiteAdmin(admin.ModelAdmin):
 class ImageInline(admin.TabularInline):
     """記事内画像のインライン"""
     model = Image
-    extra = 3
+    extra = 1
 
 
 class FileInline(GenericTabularInline):
     """記事内添付ファイルのインライン"""
     model = File
-    extra = 3
+    extra = 1
 
 
 class PostAdmin(admin.ModelAdmin):
-    """記事を、管理画面で画像とファイルIもインラインで埋め込む"""
+    """記事を、管理画面で画像とファイルもインラインで埋め込む"""
     inlines = [ImageInline, FileInline]
 
 
@@ -44,7 +44,5 @@ admin.site.register(Tag)
 admin.site.register(Link)
 admin.site.register(Comment)
 admin.site.register(ReComment)
-admin.site.register(Analytics)
-admin.site.register(Ads)
 admin.site.register(PopularPost)
 admin.site.register(File)

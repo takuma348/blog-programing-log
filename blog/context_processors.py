@@ -2,7 +2,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.db.models import Count
 from .forms import PostSerachForm
 from .models import (
-    Category, Tag, Link, Analytics, Ads, Comment,
+    Category, Tag, Link, Comment,
     PopularPost, SiteDetail,
 )
 
@@ -23,8 +23,6 @@ def common(request):
             num_recomments=Count('recomment')).order_by('-created_at')[:10],
 
         'links': Link.objects.all(),  # 全てのリンク
-        'analytics': Analytics.objects.all(),  # アナリティクス
-        'ads': Ads.objects.all(),  # 全ての広告
         'global_form': PostSerachForm(request.GET),  # 上部の検索フォーム
         'mysite': mysite,  # サイト詳細情報
         'popular_post_list': PopularPost.objects.order_by('-page_view'),  # 人気記事

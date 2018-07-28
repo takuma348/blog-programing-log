@@ -166,18 +166,6 @@ class TagListView(generic.ListView):
         num_posts=Count('post')).order_by('-num_posts')
 
 
-@login_required
-def ping(request):
-    """Googleへpingを送信する"""
-    try:
-        url = reverse_lazy('blog:sitemap')
-        ping_google(sitemap_url=url)
-    except Exception:
-        raise
-    else:
-        return redirect('blog:index', permanent=True)
-
-
 def file_download(request, pk):
     """コメントに添付されたファイルのダウンロード
 

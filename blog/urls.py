@@ -6,6 +6,8 @@ from .sitemap import (
     PostSitemap, TagSitemap,
     CategorySitemap, StaticSitemap
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'blog'
 
@@ -19,8 +21,6 @@ sitemaps = {
 
 urlpatterns = [
     path('', views.PostIndexView.as_view(), name='index'),
-
-    path('ping/', views.ping, name='ping'),
 
     path('alltag/', views.TagListView.as_view(), name='tag_list'),
 
@@ -39,4 +39,5 @@ urlpatterns = [
 
     path('latest/feed/', LatestEntriesFeed(), name='feed'),
     path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

@@ -22,12 +22,9 @@
       {% include 'blog/widgets/side_link.html' %}
 
        <!-- コメント一覧 -->
-       {% include 'blog/widgets/side_comment.html' %}
+      {% include 'blog/widgets/side_comment.html' %}
 
-      <!-- 広告一覧 -->  
-      {% for ad in ads %}
-        {{ ad.html | safe }}
-      {% endfor %}<!-- 広告一覧終了 -->
+
     </aside><!-- /サイドバー終了 -->
   </div><!-- /.row -->
 

@@ -18,8 +18,8 @@ SITE_COLORS = (
 )
 
 DEFAULT_HEADER_TEXT = """\
-このブログはDjangoとBootstrap4で作成されました
-[filter url]https://github.com/naritotzawa/django-torina-blog<split>Githubのソースコード[end]\
+プログラミング学習記録＆雑記
+[filter url]https://<split>*********[end]\
 """
 
 
@@ -142,33 +142,15 @@ class Link(models.Model):
         return self.name
 
 
-class Analytics(models.Model):
-    """アナリティクスの情報"""
-    name = models.CharField('アナリティクス', max_length=255, blank=True)
-    html = models.TextField('アナリティクスHTML', blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Ads(models.Model):
-    """広告関連"""
-    name = models.CharField('広告名', max_length=255, blank=True)
-    html = models.TextField('広告HTML', blank=True)
-
-    def __str__(self):
-        return self.name
-
-
 class SiteDetail(models.Model):
     """サイトの詳細情報"""
     site = models.OneToOneField(Site, verbose_name='Site', on_delete=models.PROTECT)
     title = models.CharField('タイトル', max_length=255, default='サンプルのタイトル')
     header_text = models.TextField('ヘッダーのテキスト', max_length=255, default=DEFAULT_HEADER_TEXT)
-    description = models.TextField('サイトの説明', max_length=255, default='サンプルの説明')
-    author = models.CharField('管理者', max_length=255, default='サンプルの管理者')
-    author_mail = models.EmailField('管理者アドレス', max_length=255, default='your_mail@gmail.com')
-    color = models.CharField('サイトテーマ色', choices=SITE_COLORS, default='primary', max_length=30)
+    description = models.TextField('サイトの説明', max_length=255, default='の説明')
+    author = models.CharField('管理者', max_length=255, default='の管理者')
+    author_mail = models.EmailField('管理者アドレス', max_length=255, default='@gmail.com')
+    color = models.CharField('サイトテーマ色', choices=SITE_COLORS, default='info', max_length=30)
 
     def __str__(self):
         return self.author

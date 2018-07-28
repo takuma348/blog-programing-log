@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-{{ mysite.color }}">
+<nav class="navbar sticky-top navbar-expand-lg">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -6,23 +6,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'blog:index' %}">Home</a>
+        <a class="nav-link" href="{% url 'blog:index' %}">HOME</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'blog:tag_list' %}">All Tag</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" target="_blank" href="{% url 'blog:feed' %}" rel="nofollow">Feed</a>
+        <a class="nav-link" href="{% url 'blog:tag_list' %}">タグ一覧</a>
       </li>
       {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog:private' %}" rel="nofollow">Private</a>
+          <a class="nav-link" href="{% url 'blog:private' %}" rel="nofollow">非公開記事</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" target="_blank" href="{% url 'admin:index' %}" rel="nofollow">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog:ping' %}" rel="nofollow">Ping</a>
+          <a class="nav-link" target="_blank" href="{% url 'admin:index' %}" rel="nofollow">管理画面</a>
         </li>
       {% endif %}
     </ul>

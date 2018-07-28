@@ -1,0 +1,147 @@
+body {
+  background-color: #fafafa;
+}
+
+.navbar {
+  background-color: #5BC0DE;
+  opacity: 0.8;
+}
+
+.navbar-nav li a {
+  font-size: 15px;
+  font-family: "serif";
+  color: #0000ff
+}
+
+.navbar-nav li a:hover {
+  background-color: #f5f5f5;
+  border-radius: 2px 20px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4) inset;
+  transition: all 300ms 0s ease;
+  color: #0000ff
+}
+
+/* ヘッダー */
+.blog-title,
+.blog-title span {
+  position: relative;
+  display: inline-block;
+}
+.blog-title span {
+  padding: .65em 4em;
+  border-radius: 4px;
+  color: #2e2e2e;
+  text-decoration: none;
+  text-align: center;
+  -webkit-animation: 3s float ease-in-out infinite;
+  animation: 3s float ease-in-out infinite;
+  font-family: ;
+  font-size: 180%;
+}
+.blog-title::after {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  z-index: -1;
+  content: '';
+  width: 100%;
+  height: 24px;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-animation: 3s shadow ease-in-out infinite;
+  animation: 3s shadow ease-in-out infinite;
+}
+@-webkit-keyframes float {
+  50% {
+    -webkit-transform: translateY(-10px);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@-webkit-keyframes shadow {
+  50% {
+    width: 70%;
+    height: 18px;
+  }
+}
+@keyframes shadow {
+  50% {
+    width: 70%;
+    height: 18px;
+  }
+}
+
+
+.footer {
+  background-color: #5BC0DE;
+  opacity: 0.8;
+}
+
+.jumbotron {
+  background-color: #fff;
+  border-bottom: .05rem solid #eee;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+}
+
+h1.card-title {
+  font-size: 2rem;
+}
+
+.blog-h2 {
+  border-left: 10px solid rgb(197,219,238);
+  border-bottom: 1px solid rgb(197,219,238);
+  margin-top: 26px;
+  padding-left: 7px;
+  padding-bottom: 4px;
+  margin-bottom: 0;
+}
+
+.blog-h3 {
+  border-left: 10px solid rgb(197,219,238);
+  border-bottom: 1px solid rgb(197,219,238);
+  margin-top: 26px;
+  padding-left: 7px;
+  padding-bottom: 4px;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+body > footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+}
+
+body > footer p {
+  margin-bottom: .25rem;
+}
+
+body > footer a {
+  color: blue;
+  text-decoration: underline;
+}
+
+body > nav {
+  opacity: 0.5;
+}
+
+@media(min-width: 1700px){
+    #toc {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+        width:300px;
+        font-size:0.8rem;
+    }
+}
