@@ -11,8 +11,8 @@
   <div class="col-md-10">
       <h5>
         {{ comment.name }}
-        <span class="badge badge-{{ mysite.color }} badge-pill">{% by_the_time comment.created_at %}</span>
-        <span class="badge badge-{{ mysite.color }} badge-pill">{{ comment.created_at }}</span>
+        <span class="badge badge-pill">{% by_the_time comment.created_at %}</span>
+        <span class="badge badge-pill">{{ comment.created_at }}</span>
         <a href="{% url 'blog:recomment' comment.pk %}">返信する</a>
       </h5>
       {% for file in comment.files.all %}
