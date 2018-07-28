@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
 from .models import Comment, ReComment, File
-from .fields import SimpleCaptchaField
 
 
 class PostSerachForm(forms.Form):
@@ -16,10 +15,6 @@ class PostSerachForm(forms.Form):
 
 class CommentCreateForm(forms.ModelForm):
     """コメント投稿フォーム"""
-
-    captha = SimpleCaptchaField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-    )
 
     class Meta:
         model = Comment
@@ -39,10 +34,6 @@ class CommentCreateForm(forms.ModelForm):
 
 class ReCommentCreateForm(forms.ModelForm):
     """返信コメント投稿フォーム"""
-
-    captha = SimpleCaptchaField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-    )
 
     class Meta:
         model = ReComment

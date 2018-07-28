@@ -1,13 +1,11 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.sitemaps import ping_google
-from django.urls import reverse_lazy
 from django.db.models import Q, Count
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.views import generic
 from .forms import PostSerachForm, CommentCreateForm, ReCommentCreateForm, FileInlineFormSet
 from .models import Post, Comment, Tag, Category, ReComment, File
+import requests
 
 
 class BaseListView(generic.ListView):
@@ -113,11 +111,22 @@ class CommentCreateView(generic.CreateView):
         comment = form.save(commit=False)
         post_pk = self.kwargs['pk']
         comment.target = Post.objects.get(pk=post_pk)
-        comment.save()
         formset = FileInlineFormSet(self.request.POST, instance=comment, files=self.request.FILES)
-        if formset.is_valid():
-            formset.save()
-        return redirect('blog:detail', pk=post_pk)
+        captcha = self.request.POST.get("g-recaptcha-response")
+
+        if captcha:
+            auth_url = 'https://www.google.com/recaptcha/api/siteverify?secret={}&response={}'
+            auth_url = auth_url.format('6Lcd32YUAAAAAAkO96iE5RbggX289le7Zt5O7qiS', captcha)
+            response = requests.get(auth_url)
+            if response.json().get('success'):
+                if formset.is_valid():
+                    comment.save()
+                    formset.save()
+                return redirect('blog:detail', pk=comment.target.pk)
+
+        # ビューからフォームにエラーを追加できます。第一引数がNoneの場合は、{{ form.non_field_errors }}で表示される
+        form.add_error(None, 'ロボットではないにチェックを入れてください')  # キーが間違っている場合もあるが、一緒のエラー内容にしちゃってます。
+        return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -125,7 +134,6 @@ class CommentCreateView(generic.CreateView):
         if 'formset' not in context:
             context['formset'] = FileInlineFormSet(self.request.POST or None)
         return context
-
 
 
 class ReCommentCreateView(generic.CreateView):
@@ -141,12 +149,22 @@ class ReCommentCreateView(generic.CreateView):
         comment = Comment.objects.get(pk=comment_pk)
         recomment = form.save(commit=False)
         recomment.target = comment
-        recomment.save()
-
         formset = FileInlineFormSet(self.request.POST, instance=recomment, files=self.request.FILES)
-        if formset.is_valid():
-            formset.save()
-        return redirect('blog:detail', pk=comment.target.pk)
+        captcha = self.request.POST.get("g-recaptcha-response")
+
+        if captcha:
+            auth_url = 'https://www.google.com/recaptcha/api/siteverify?secret={}&response={}'
+            auth_url = auth_url.format('6Lcd32YUAAAAAAkO96iE5RbggX289le7Zt5O7qiS', captcha)
+            response = requests.get(auth_url)
+            if response.json().get('success'):
+                if formset.is_valid():
+                    recomment.save()
+                    formset.save()
+                return redirect('blog:detail', pk=comment.target.pk)
+
+        # ビューからフォームにエラーを追加できます。第一引数がNoneの場合は、{{ form.non_field_errors }}で表示される
+        form.add_error(None, 'ロボットではないにチェックを入れてください')  # キーが間違っている場合もあるが、一緒のエラー内容にしちゃってます。
+        return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         comment_pk = self.kwargs['pk']

@@ -4,11 +4,11 @@ body {
 
 .navbar {
   background-color: #5BC0DE;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .navbar-nav li a {
-  font-size: 15px;
+  font-size: 18px;
   font-family: "serif";
   color: #0000ff
 }
@@ -28,14 +28,14 @@ body {
   display: inline-block;
 }
 .blog-title span {
-  padding: .65em 4em;
   border-radius: 4px;
   color: #2e2e2e;
   text-decoration: none;
   text-align: center;
   -webkit-animation: 3s float ease-in-out infinite;
   animation: 3s float ease-in-out infinite;
-  font-family: ;
+  font-family:  'Gurmukhi MN',sans-serif;
+  text-shadow: 5px 5px #cfcfcf;
   font-size: 180%;
 }
 .blog-title::after {
@@ -76,16 +76,24 @@ body {
   }
 }
 
-
 .footer {
   background-color: #5BC0DE;
   opacity: 0.8;
 }
 
+.card-footer {
+  padding: 13px 0px;
+  color: dimgray;
+}
+
+.card-body {
+  padding-bottom: 10px;
+}
+
 .jumbotron {
   background-color: #fff;
   border-bottom: .05rem solid #eee;
-}
+  padding: 35px 0px;}
 
 .icon {
   width: 64px;
@@ -144,4 +152,12 @@ body > nav {
         width:300px;
         font-size:0.8rem;
     }
+}
+/*コメントページの下部マージン調整*/
+.row main {
+  padding-bottom: 45px;
+}
+
+main .btn-info {
+  margin-top: 30px;
 }
