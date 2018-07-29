@@ -133,3 +133,4 @@ Temporary Items
 .apdisk
 
 /db.sqlite3
+/conf/settings.py
