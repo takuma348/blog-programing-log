@@ -21,13 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+4y*437@$vqu@&ibm-0g9@@7jl3yre&=x!klxaop9+54f_ifm4'
+
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lcd32YUAAAAAAkO96iE5RbggX289le7Zt5O7qiS'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -76,8 +76,6 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -105,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
@@ -130,5 +127,3 @@ USE_TZ = True
 SITE_ID = 1
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-MEDIA_URL = '/pics/'
-MEDIA_ROOT = BASE_DIR

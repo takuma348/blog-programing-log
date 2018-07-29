@@ -14,8 +14,6 @@ class BaseListView(generic.ListView):
 
     def get_queryset(self):
         """公開フラグがTrue、作成日順の記事を返す."""
-        # post.categoryや、post.tag.allをテンプレートで書く場合は
-        # それぞれselect_relatedやprefetch_relatedで改善できる場合があります。
         queryset = Post.objects.filter(
             is_publick=True).order_by('-created_at').select_related('category').prefetch_related('tag')
         return queryset
@@ -97,8 +95,7 @@ class PostDetailView(generic.DetailView):
 
 
 class CommentCreateView(generic.CreateView):
-    """コメント投稿画面
-
+    """
     '^comment/(?P<pk>[0-9]+)/$'のようにして、記事のpkも受け取っている
     このpkをcontextへ渡し前へ戻るリンクに利用したり、targetに指定する記事を取得するのに使う
 
@@ -124,8 +121,8 @@ class CommentCreateView(generic.CreateView):
                     formset.save()
                 return redirect('blog:detail', pk=comment.target.pk)
 
-        # ビューからフォームにエラーを追加できます。第一引数がNoneの場合は、{{ form.non_field_errors }}で表示される
-        form.add_error(None, 'ロボットではないにチェックを入れてください')  # キーが間違っている場合もあるが、一緒のエラー内容にしちゃってます。
+        # ビューからフォームにエラーを追加。第一引数がNoneの場合は、{{ form.non_field_errors }}で表示される
+        form.add_error(None, 'ロボットではないにチェックを入れてください')
         return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
@@ -137,7 +134,6 @@ class CommentCreateView(generic.CreateView):
 
 
 class ReCommentCreateView(generic.CreateView):
-    """返信コメント投稿"""
 
     model = ReComment
     form_class = ReCommentCreateForm
@@ -186,9 +182,7 @@ class TagListView(generic.ListView):
 
 def file_download(request, pk):
     """コメントに添付されたファイルのダウンロード
-
-    ユーザーがアップロードできるファイルなので、セキュリティ対策のため
-    必ずブラウザ上で開かせず、ダウンロードさせるようにする
+    セキュリティ対策のためブラウザ上で開かせず、ダウンロードさせるようにする
     """
     file = get_object_or_404(File, pk=pk)
     response = HttpResponse(file.src, content_type='application/octet-stream')

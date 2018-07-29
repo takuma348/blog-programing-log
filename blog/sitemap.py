@@ -1,11 +1,9 @@
-"""sitemap."""
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse_lazy
 from .models import Post, Category, Tag
 
 
 class PostSitemap(Sitemap):
-    """記事のサイトマップ."""
 
     changefreq = 'weekly'
     priority = 1.0
@@ -24,7 +22,6 @@ class PostSitemap(Sitemap):
 
 
 class CategorySitemap(Sitemap):
-    """カテゴリのサイトマップ."""
 
     changefreq = 'monthly'
     priority = 0.5
@@ -39,7 +36,6 @@ class CategorySitemap(Sitemap):
 
 
 class TagSitemap(Sitemap):
-    """タグのサイトマップ."""
 
     changefreq = 'monthly'
     priority = 0.5
@@ -54,7 +50,6 @@ class TagSitemap(Sitemap):
 
 
 class StaticSitemap(Sitemap):
-    """静的なサイトマップ."""
 
     changefreq = 'weekly'
     priority = 0.8

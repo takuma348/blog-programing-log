@@ -6,7 +6,6 @@ from django.db import models
 from django.utils import timezone
 
 
-# サイト詳細情報のテーマカラーの選択肢
 SITE_COLORS = (
     ('primary', '青色'),
     ('secondary', '灰色'),
@@ -17,14 +16,11 @@ SITE_COLORS = (
     ('dark', '黒'),
 )
 
-DEFAULT_HEADER_TEXT = """\
-プログラミング学習記録＆雑記
-[filter url]https://<split>*********[end]\
-"""
+DEFAULT_HEADER_TEXT = ''
 
 
 class Category(models.Model):
-    """カテゴリー"""
+
     name = models.CharField('カテゴリ名', max_length=255)
 
     def __str__(self):
@@ -33,7 +29,7 @@ class Category(models.Model):
 
 
 class Tag(models.Model):
-    """タグ"""
+
     name = models.CharField('タグ名', max_length=255)
 
     def __str__(self):
@@ -42,7 +38,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    """記事"""
+
     title = models.CharField('タイトル', max_length=255)
     text = models.TextField('本文')
     category = models.ForeignKey(
@@ -71,10 +67,8 @@ class Post(models.Model):
             return description
 
     def get_next(self):
-        """次の記事を取得する(日付)
 
-        パフォーマンス的に、無駄が多い処理ですが、APIとして一応残しておきます。
-        """
+        # 次の記事を取得する(日付)
         next_post = Post.objects.filter(
             is_publick=True, created_at__gt=self.created_at
         ).order_by('-created_at')
@@ -83,10 +77,7 @@ class Post(models.Model):
         return None
 
     def get_prev(self):
-        """前の記事を取得する(日付)
-
-        パフォーマンス的に、無駄が多い処理ですが、APIとして一応残しておきます。
-        """
+        """前の記事を取得する(日付)"""
         prev_post = Post.objects.filter(
             is_publick=True, created_at__lt=self.created_at
         ).order_by('-created_at')
@@ -96,7 +87,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    """コメント"""
+
     name = models.CharField('名前', max_length=255, default='名無し')
     text = models.TextField('コメント')
     icon = models.ImageField(
@@ -110,12 +101,12 @@ class Comment(models.Model):
         return self.text[:10]
 
     def get_filename(self):
-        """ファイル名を取得する"""
+
         return os.path.basename(self.file.url)
 
 
 class ReComment(models.Model):
-    """返信コメント"""
+
     name = models.CharField('名前', max_length=255, default='名無し')
     text = models.TextField('コメント')
     icon = models.ImageField(
@@ -129,12 +120,12 @@ class ReComment(models.Model):
         return self.text[:10]
 
     def get_filename(self):
-        """ファイル名を取得する"""
+
         return os.path.basename(self.file.url)
 
 
 class Link(models.Model):
-    """リンク"""
+
     name = models.CharField('リンク名', max_length=255)
     adrs = models.CharField('アドレス', max_length=255)
 
@@ -143,7 +134,7 @@ class Link(models.Model):
 
 
 class SiteDetail(models.Model):
-    """サイトの詳細情報"""
+
     site = models.OneToOneField(Site, verbose_name='Site', on_delete=models.PROTECT)
     title = models.CharField('タイトル', max_length=255, default='サンプルのタイトル')
     header_text = models.TextField('ヘッダーのテキスト', max_length=255, default=DEFAULT_HEADER_TEXT)
@@ -157,7 +148,7 @@ class SiteDetail(models.Model):
 
 
 class PopularPost(models.Model):
-    """人気記事"""
+
     title = models.CharField('タイトル', max_length=255)
     url = models.CharField('URL', max_length=255)
     page_view = models.IntegerField('ページビュー数')
@@ -193,5 +184,5 @@ class File(models.Model):
         return 'モデル:{} pk:{} url:{}'.format(self.content_type, self.object_id, self.src.url)
 
     def get_filename(self):
-        """ファイル名を取得する"""
+
         return os.path.basename(self.src.url)
