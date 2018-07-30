@@ -26,6 +26,23 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lcd32YUAAAAAAkO96iE5RbggX289le7Zt5O7qiS'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -76,13 +93,10 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 
 
 # Database
+db_from_env = dj_database_url.config()
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': dj_database_url.config(),
     }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
