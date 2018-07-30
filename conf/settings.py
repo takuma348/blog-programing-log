@@ -106,7 +106,7 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -137,4 +137,4 @@ try:
     from .local_settings import *
 except ImportError:
     pass
-    
+
