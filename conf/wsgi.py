@@ -14,4 +14,5 @@ from whitenoise.django import DjangoWhiteNoise
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "conf.settings")
 application = DjangoWhiteNoise(application)
-application = Cling(get_wsgi_application())
+
+# application = Cling(get_wsgi_application())
