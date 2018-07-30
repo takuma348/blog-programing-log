@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -27,7 +27,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lcd32YUAAAAAAkO96iE5RbggX289le7Zt5O7qiS'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -102,11 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# STATIC_URL = '/static/'
-#
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -130,22 +130,9 @@ MEDIA_URL = '/media/'
 
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
+
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
-
-# Static asset configuration
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
