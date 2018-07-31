@@ -25,7 +25,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lcd32YUAAAAAAkO96iE5RbggX289le7Zt5O7qiS'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -41,7 +41,7 @@ LOGGING = {
         },
     },
 }
-
+"""
 
 ALLOWED_HOSTS = ['*']
 
