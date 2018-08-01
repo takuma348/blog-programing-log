@@ -164,3 +164,8 @@ body > nav {
 main .btn-info {
   margin-top: 30px;
 }
+
+.errorlist li {
+  font-weight: bold;
+  color: red;
+}

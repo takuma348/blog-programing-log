@@ -32,14 +32,14 @@
           <div class="col-md-10">
               <h5>
                 {{ recomment.name }}
-                <span class="badge badge-{{ mysite.color }} badge-pill">{% by_the_time recomment.created_at %}</span>
-                <span class="badge badge-{{ mysite.color }} badge-pill">{{ recomment.created_at }}</span>
+                <span class="badge badge-pill">{% by_the_time recomment.created_at %}</span>
+                <span class="badge badge-pill">{{ recomment.created_at }}</span>
               </h5>
               {% for file in recomment.files.all %}
                 <a href="{% url 'blog:file_download' file.pk %}">添付ファイルダウンロード({{ file.get_filename }})</a><br>
               {% endfor %}
               {{ recomment.text | linebreaksbr }}
-        
+
           </div>
         </div>
       {% endfor %}
