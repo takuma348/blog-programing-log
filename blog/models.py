@@ -136,7 +136,7 @@ class Link(models.Model):
 class SiteDetail(models.Model):
 
     site = models.OneToOneField(Site, verbose_name='Site', on_delete=models.PROTECT)
-    title = models.CharField('タイトル', max_length=255, default='サンプルのタイトル')
+    title = models.CharField('タイトル', max_length=255, default='Programing Log')
     header_text = models.TextField('ヘッダーのテキスト', max_length=255, default=DEFAULT_HEADER_TEXT)
     description = models.TextField('サイトの説明', max_length=255, default='の説明')
     author = models.CharField('管理者', max_length=255, default='の管理者')
