@@ -113,7 +113,7 @@ class CommentCreateView(generic.CreateView):
 
         if captcha:
             auth_url = 'https://www.google.com/recaptcha/api/siteverify?secret={}&response={}'
-            auth_url = auth_url.format('6Ldnp2cUAAAAAFc3O2efnkFOyRghyv-ccxrrniBh', captcha)
+            auth_url = auth_url.format('KEY', captcha)
             response = requests.get(auth_url)
             if response.json().get('success'):
                 if formset.is_valid():
@@ -150,7 +150,7 @@ class ReCommentCreateView(generic.CreateView):
 
         if captcha:
             auth_url = 'https://www.google.com/recaptcha/api/siteverify?secret={}&response={}'
-            auth_url = auth_url.format('6Ldnp2cUAAAAAFc3O2efnkFOyRghyv-ccxrrniBh', captcha)
+            auth_url = auth_url.format('KEY', captcha)
             response = requests.get(auth_url)
             if response.json().get('success'):
                 if formset.is_valid():
