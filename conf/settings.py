@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+4y*437@$vqu@&ibm-0g9@@7jl3yre&=x!klxaop9+54f_ifm4'
+SECRET_KEY = ''
 
-GOOGLE_RECAPTCHA_SECRET_KEY = '6Ldnp2cUAAAAAFc3O2efnkFOyRghyv-ccxrrniBh'
+GOOGLE_RECAPTCHA_SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -102,14 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'static'),
-# )
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'ja'
 
